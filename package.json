@@ -1,0 +1,21 @@
+{
+  "name": "clinic",
+  "version": "1.0.0",
+  "description": "php version of Clinic",
+  "main": "index.js",
+  "scripts": {
+    "watch:sass": "node-sass assets/scss/main.scss assets/css/main.css -w",
+    "devserver": "live-server",
+    "start": "npm-run-all --parallel devserver watch:sass"
+  },
+  "author": "Clinic",
+  "license": "ISC",
+  "dependencies": {
+    "concat": "^1.0.3",
+    "node-sass": "^4.5.3",
+    "npm-run-all": "^4.1.1"
+  },
+  "engines": {
+    "node": "^10"
+  }
+}
