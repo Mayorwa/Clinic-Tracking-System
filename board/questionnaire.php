@@ -1,4 +1,9 @@
-<?php ?>
+<?php
+require_once('../helper/global.php');
+require('../middlewares/auth.php');
+
+must_be_auth();
+?>
 <!DOCTYPE html>
 <html lang="">
     <?php include('../include/_head.php') ?>
