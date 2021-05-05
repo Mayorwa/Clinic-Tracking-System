@@ -41,7 +41,27 @@ must_be_auth();
                                                         <use xlink:href="../assets/img/sprite.svg#icon-doctor"></use>
                                                     </svg>
                                                 </div>
-                                                <div class="card__title h6">staffs</div>
+                                                <div class="card__title h6">doctors</div>
+                                                <div class="card__number h4">2 <span>records</span></div>
+                                                <a class="card__btn button button--blue-white" href="/services">view records</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sub--md--6 sub--lg--3">
+                                        <div class="card card_widget">
+                                            <a type="button" class="card__next" href="/services">
+                                                <svg class="icon icon-arrow-up-right" id="icon-arrow-up-right" viewBox="0 0 10 10">
+                                                    <use xlink:href="../assets/img/sprite.svg#icon-arrow-up-right"></use>
+                                                </svg>
+                                            </a>
+
+                                            <div class="card__inner">
+                                                <div class="card__img card__img-blue">
+                                                    <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <use xlink:href="../assets/img/sprite.svg#icon-doctor"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="card__title h6">support staffs</div>
                                                 <div class="card__number h4">2 <span>records</span></div>
                                                 <a class="card__btn button button--blue-white" href="/services">view records</a>
                                             </div>
@@ -82,6 +102,26 @@ must_be_auth();
                                                     </svg>
                                                 </div>
                                                 <div class="card__title h6">questionnaires</div>
+                                                <div class="card__number h4">20 <span>records</span></div>
+                                                <a class="card__btn button button--blue-white" href="/employee">view records</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sub--md--6 sub--lg--3">
+                                        <div class="card card_widget">
+                                            <a type="button" class="card__next" href="/employee">
+                                                <svg class="icon icon-arrow-up-right" id="icon-arrow-up-right" viewBox="0 0 10 10">
+                                                    <use xlink:href="../assets/img/sprite.svg#icon-arrow-up-right"></use>
+                                                </svg>
+                                            </a>
+
+                                            <div class="card__inner">
+                                                <div class="card__img card__img-blue">
+                                                    <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <use xlink:href="../assets/img/sprite.svg#icon-clipboard"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="card__title h6">appointments</div>
                                                 <div class="card__number h4">20 <span>records</span></div>
                                                 <a class="card__btn button button--blue-white" href="/employee">view records</a>
                                             </div>

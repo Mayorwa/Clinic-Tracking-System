@@ -47,7 +47,15 @@
                         <use xlink:href="../assets/img/sprite.svg#icon-doctor"></use>
                     </svg>
                 </div>
-                <div class="sidebar__text">Staff</div>
+                <div class="sidebar__text">Support Staff</div>
+            </a>
+            <a href="/board/meetings" class="sidebar__item">
+                <div class="sidebar__icon">
+                    <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <use xlink:href="../assets/img/sprite.svg#icon-doctor"></use>
+                    </svg>
+                </div>
+                <div class="sidebar__text">Doctors</div>
             </a>
             <a href="/board/meetings" class="sidebar__item">
                 <div class="sidebar__icon">
@@ -68,6 +76,18 @@
                     </svg>
                 </div>
                 <div class="sidebar__text">Questionnaires</div>
+            </a>
+            <?php if ($request_page == "appointment.php"):?>
+                <a href="../board/appointment.php" class="sidebar__item active">
+            <?php else: ?>
+                <a href="../board/appointment.php" class="sidebar__item">
+            <?php endif; ?>
+                <div class="sidebar__icon">
+                    <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <use xlink:href="../assets/img/sprite.svg#icon-clipboard"></use>
+                    </svg>
+                </div>
+                <div class="sidebar__text">Appointments</div>
             </a>
         </nav>
     </div>

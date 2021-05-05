@@ -2,6 +2,19 @@
 require('../middlewares/auth.php');
 require('../controllers/questionnaire.php');
 must_be_auth();
+
+$questionnaire = new Questionnaire();
+
+//$questionnaires = $questionnaire->get_all_questionnaires();
+
+if (isset($_POST['create_questionnaire'])){
+    $data = [
+        'title'=> $_POST['title'],
+        'questions'=> $_POST['questions'],
+        'type' => $_POST['type'],
+    ];
+    $questionnaire->add_questionnaire($data);
+}
 ?>
 <!DOCTYPE html>
 <html lang="">
@@ -13,9 +26,12 @@ must_be_auth();
                 <div class="page__content">
                     <?php include('../include/_header.php')?>
                     <div class="page__container">
+                        <?php
+                        include('../include/_error.php');
+                        ?>
                         <div>
                             <div class="page__head">
-                                <div class="page__title h6">Questionnaire</div>
+                                <div class="page__title h6">Questionnaires</div>
                                 <a class="button button--success" id="open_createModal">
                                     <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                         <use xlink:href="../assets/img/sprite.svg#icon-plus-circle"></use>
@@ -28,41 +44,55 @@ must_be_auth();
                             </div>
                             <div class="modal-mask" id="createModal">
                                 <div class="modal-wrapper">
-                                    <form class="modal-container">
-
+                                    <form class="modal-container" method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                                         <div class="modal-header">
                                             <div class="modal__title h6">
                                                 create questionnaire
                                             </div>
                                             <button type="button" class="modal-close" id="close_createModal">×</button>
                                         </div>
-
                                         <div class="modal-body">
                                             <div class="modal__fieldset">
                                                 <div>
                                                     <div class="modal__field">
                                                         <div class="modal__label">enter the title of the questionnaire :</div>
-                                                        <div class="modal__wrap"><input class="modal__input" type="text" name="name" placeholder="e.g covid 19 assessment"></div>
+                                                        <div class="modal__wrap"><input class="modal__input" type="text" name="title" placeholder="e.g covid 19 assessment" required></div>
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <div class="modal__field">
-                                                        <div class="modal__label">enter your questions below :</div>
-                                                        <div class="modal__wrap" id="question_wrap">
-                                                            <input class="modal__input" type="text" name="questions[]" placeholder="e.g enter a question">
+                                                    <div class="modal__label">enter your questions below :</div>
+                                                    <div id="question_wrap">
+                                                        <div class="modal__row" id="question_1">
+                                                            <div class="modal__field">
+                                                                <div class="modal__label">question title:</div>
+                                                                <div class="modal__wrap">
+                                                                    <input class="modal__input" type="text" name="questions[]" placeholder="e.g enter a question" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal__field">
+                                                                <div class="modal__label">question type:</div>
+                                                                <div class="modal__wrap" >
+                                                                    <select class="modal__input" name="type[]" required>
+                                                                        <option value="trueOrFalse">True or False</option>
+                                                                        <option value="text">Text</option>
+                                                                        <option value="agreeOrDisagree">Agree to Disagree</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <input type="hidden" value="1" id="number_of_inputs">
-                                                        <div class="modal__question-btns">
-                                                            <a class="modal__btn modal__btn-add button button--primary" onclick="add_input()">
-                                                                <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                    <use xlink:href="../assets/img/sprite.svg#icon-plus-circle"></use>
-                                                                </svg>
-                                                                add a question
-                                                            </a>
-                                                            <a class="modal__btn modal__btn-add button button--red-white" onclick="remove_input()">
-                                                                remove a question
-                                                            </a>
-                                                        </div>
+                                                    </div>
+
+                                                    <input type="hidden" value="1" id="number_of_inputs">
+                                                    <div class="modal__question-btns">
+                                                        <a class="modal__btn modal__btn-add button button--primary" onclick="add_input()">
+                                                            <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <use xlink:href="../assets/img/sprite.svg#icon-plus-circle"></use>
+                                                            </svg>
+                                                            add a question
+                                                        </a>
+                                                        <a class="modal__btn modal__btn-add button button--red-white" onclick="remove_input()">
+                                                            remove a question
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

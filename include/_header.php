@@ -6,6 +6,3 @@
     </button>
     <a class="header__logo"><img src="../assets/img/ava-header.png" alt="" /></a>
 </div>
-<?php
-    include('../include/_error.php');
-?>

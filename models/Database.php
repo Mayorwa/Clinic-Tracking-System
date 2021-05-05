@@ -15,7 +15,6 @@ class Database{
 		$this->username = $username;
 		$this->dbname = $dbname;
 		$this->password= $password;
-
 		// Set DSN
 		$dsn = 'mysql:host='. $this->host . ';dbname='. $this->dbname;
 
@@ -70,5 +69,9 @@ class Database{
 	    $this->execute();
 	    $result = $this->stmt->fetch();
         return $result;
+    }
+
+    public function id(){
+        return $this->dbh->lastInsertId();
     }
 }

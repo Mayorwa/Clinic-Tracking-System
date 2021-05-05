@@ -22,14 +22,26 @@ class Questionnaire{
             $result = $this->question->create($data);
 
             if(!$result){
-                $_SESSION['errors'] = [["info" => "<b>incorrect email or password</b>", "type" => "warning"]];
+                $_SESSION['errors'] = [["info" => "<b>An error occurred</b>", "type" => "warning"]];
                 return $_SESSION['errors'];
             }
-            $_SESSION['errors'] = [["info" => "<b>user logged in successfully</b>", "type" => "success"]];
+
+            $_SESSION['errors'] = [["info" => "<b>Questionnaire created successfully</b>", "type" => "success"]];
             return $result;
 
         }
         catch(PDOException $e){
+            $_SESSION['errors'] = [["info" => "<b>Error Occurred:". $e->getMessage()."</b>", "type" => "danger"]];
+            return $_SESSION['errors'];
+        }
+    }
+
+    public function get_all_questionnaires(){
+        try{
+            $results = $this->question->fetchAll();
+
+            return $results;
+        }catch (PDOException $e){
             $_SESSION['errors'] = [["info" => "<b>Error Occurred:". $e->getMessage()."</b>", "type" => "danger"]];
             return $_SESSION['errors'];
         }

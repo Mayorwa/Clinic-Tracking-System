@@ -5,10 +5,6 @@ function dd ($data) {
     die();
 }
 
-function back () {
-    return $_SERVER['HTTP_REFERER'];
-}
-
 function redirect($address) {
     header("Location: ".$address);
     exit;

@@ -29,7 +29,7 @@ must_not_be_auth();
                 <a href="/sign-up">create new account</a>
             </div>
             <div class="login__form-div">
-                <form action="sign-in.php" method="POST" class="login__form">
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" class="login__form">
                     <a class="login__logo"><img src="../assets/img/ava-header.png" alt=""></a>
                     <?php
                         include('../include/_error.php');

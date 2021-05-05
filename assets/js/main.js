@@ -12,6 +12,7 @@ var toggle = document.querySelector('.sidebar__toggle'),
     createModal = document.querySelector('#createModal'),
     close_createModal = document.querySelectorAll('#close_createModal'),
     open_createModal = document.querySelector('#open_createModal');
+    question_1 = document.querySelector('#question_1');
     question_wrap = document.querySelector('#question_wrap');
     number_of_inputs = document.querySelector('#number_of_inputs');
 
@@ -62,14 +63,20 @@ close_deleteModal.forEach(item => {
 
 function add_input(){
     let no_of_inputs = parseInt(number_of_inputs.value)+1;
-    let new_input="<input type='text' class='modal__input' name='questions[]' placeholder='e.g enter a question' id='question_"+no_of_inputs+"'>";
-    question_wrap.innerHTML += new_input;
+
+    let clone = document.querySelector('#question_1').cloneNode(true);
+    clone.id = "question_" + no_of_inputs;
+
+    document.querySelector('#question_1').parentNode.appendChild(clone);
+
     number_of_inputs.value = no_of_inputs;
+
 }
 function remove_input(){
     let no_of_inputs = parseInt(number_of_inputs.value);
     if(no_of_inputs > 1){
         document.querySelector('#question_'+no_of_inputs).remove();
-        no_of_inputs.value = no_of_inputs-1;
+        number_of_inputs.value = no_of_inputs-1;
     }
+
 }
