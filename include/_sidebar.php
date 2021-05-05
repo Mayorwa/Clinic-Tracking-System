@@ -5,6 +5,11 @@
     if (isset($_POST['logout'])){
         $auth->logout();
     }
+
+    $uri = trim( $_SERVER['REQUEST_URI'], "/" );
+    $uri = explode("/", $uri);
+    array_shift($uri);
+    $request_page = $uri[count($uri)-1];
 ?>
 <div class="sidebar">
     <div class="sidebar__head">
@@ -24,7 +29,11 @@
     </div>
     <div class="sidebar__body">
         <nav class="sidebar__nav">
-            <a href="../board/overview.php" class="sidebar__item active">
+                <?php if ($request_page == "overview.php"):?>
+                    <a href="../board/overview.php" class="sidebar__item active">
+                <?php else: ?>
+                    <a href="../board/overview.php" class="sidebar__item">
+                <?php endif; ?>
                 <div class="sidebar__icon">
                     <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <use xlink:href="../assets/img/sprite.svg#icon-analytics"></use>
@@ -48,7 +57,11 @@
                 </div>
                 <div class="sidebar__text">Patients</div>
             </a>
-            <a href="../board/questionnaire.php" class="sidebar__item">
+            <?php if ($request_page == "questionnaire.php"):?>
+                <a href="../board/questionnaire.php" class="sidebar__item active">
+            <?php else: ?>
+                <a href="../board/questionnaire.php" class="sidebar__item">
+            <?php endif; ?>
                 <div class="sidebar__icon">
                     <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <use xlink:href="../assets/img/sprite.svg#icon-clipboard"></use>

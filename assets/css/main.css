@@ -1572,8 +1572,7 @@ p.book {
     background-color: #355DFF;
     border: 1px solid #355DFF; }
     .button--primary:hover {
-      background-color: transparent;
-      color: #355DFF; }
+      background-color: #1140ff; }
   .button--purple {
     color: white;
     background-color: #503F75; }
@@ -1992,7 +1991,7 @@ input, select, textarea {
 .modal-container {
   width: 800px;
   margin: 0 auto;
-  margin-top: 200px;
+  margin-top: 100px;
   margin-bottom: 50px;
   padding: 20px 30px;
   background-color: #fff;
@@ -2062,10 +2061,9 @@ input, select, textarea {
 
 .modal__label {
   margin-bottom: 16px;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.33333;
-  font-weight: 500;
-  color: #808191; }
+  font-weight: 600; }
 
 .modal__label_mb32 {
   margin-bottom: 32px; }
@@ -2075,7 +2073,8 @@ input, select, textarea {
   .modal__wrap input, .modal__wrap select {
     height: 56px; }
   .modal__wrap textarea {
-    padding: 20px; }
+    padding: 20px;
+    resize: none; }
 
 .modal__input {
   width: 100%;
@@ -2085,8 +2084,7 @@ input, select, textarea {
   font-size: 14px;
   font-weight: 600;
   color: #11142D;
-  -webkit-transition: all .2s;
-  -o-transition: all .2s;
+  margin-bottom: 10px;
   transition: all .2s; }
 
 .modal__input:focus {
@@ -2099,6 +2097,21 @@ input, select, textarea {
   font-size: 14px;
   height: 48px;
   padding: 0 24px; }
+  .modal__btn-add {
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center; }
+    .modal__btn-add:first-child {
+      margin-right: 10px; }
+    .modal__btn-add svg {
+      margin-right: 10px; }
+
+.modal__question-btns {
+  width: 420px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto; }
 
 .modal-footer {
   justify-content: flex-end;

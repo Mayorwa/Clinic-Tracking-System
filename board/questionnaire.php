@@ -1,7 +1,6 @@
 <?php
-require_once('../helper/global.php');
 require('../middlewares/auth.php');
-
+require('../controllers/questionnaire.php');
 must_be_auth();
 ?>
 <!DOCTYPE html>
@@ -16,7 +15,7 @@ must_be_auth();
                     <div class="page__container">
                         <div>
                             <div class="page__head">
-                                <div class="page__title h6">Overview</div>
+                                <div class="page__title h6">Questionnaire</div>
                                 <a class="button button--success" id="open_createModal">
                                     <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                         <use xlink:href="../assets/img/sprite.svg#icon-plus-circle"></use>
@@ -25,15 +24,15 @@ must_be_auth();
                                 </a>
                             </div>
                             <div class="page_description">
-                                records of services offered by Hallo labs
+                                questionnaires crated by the admin
                             </div>
                             <div class="modal-mask" id="createModal">
                                 <div class="modal-wrapper">
-                                    <div class="modal-container">
+                                    <form class="modal-container">
 
                                         <div class="modal-header">
                                             <div class="modal__title h6">
-                                                create report
+                                                create questionnaire
                                             </div>
                                             <button type="button" class="modal-close" id="close_createModal">×</button>
                                         </div>
@@ -42,15 +41,27 @@ must_be_auth();
                                             <div class="modal__fieldset">
                                                 <div>
                                                     <div class="modal__field">
-                                                        <div class="modal__label">name</div>
-                                                        <div class="modal__wrap"><input class="modal__input" type="text"></div>
+                                                        <div class="modal__label">enter the title of the questionnaire :</div>
+                                                        <div class="modal__wrap"><input class="modal__input" type="text" name="name" placeholder="e.g covid 19 assessment"></div>
                                                     </div>
                                                 </div>
                                                 <div>
                                                     <div class="modal__field">
-                                                        <div class="modal__label">description</div>
-                                                        <div class="modal__wrap">
-                                                            <textarea name="" id="" cols="30" class="modal__input" rows="5"></textarea>
+                                                        <div class="modal__label">enter your questions below :</div>
+                                                        <div class="modal__wrap" id="question_wrap">
+                                                            <input class="modal__input" type="text" name="questions[]" placeholder="e.g enter a question">
+                                                        </div>
+                                                        <input type="hidden" value="1" id="number_of_inputs">
+                                                        <div class="modal__question-btns">
+                                                            <a class="modal__btn modal__btn-add button button--primary" onclick="add_input()">
+                                                                <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                    <use xlink:href="../assets/img/sprite.svg#icon-plus-circle"></use>
+                                                                </svg>
+                                                                add a question
+                                                            </a>
+                                                            <a class="modal__btn modal__btn-add button button--red-white" onclick="remove_input()">
+                                                                remove a question
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -58,15 +69,15 @@ must_be_auth();
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button class="modal__btn button button--red-transparent" id="close_createModal" type="submit">discard</button>
-                                            <button class="modal__btn button button--success" type="submit">
+                                            <a class="modal__btn button button--red-transparent" id="close_createModal">discard</a>
+                                            <button class="modal__btn button button--success" name="create_questionnaire" type="submit">
                                                 <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                     <use xlink:href="../assets/img/sprite.svg#icon-save"></use>
                                                 </svg>
-                                                save
+                                                submit
                                             </button>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                             <div class="modal-mask" id="deleteModal">
@@ -106,18 +117,16 @@ must_be_auth();
                                 <div class="tb__table">
                                     <div class="tb__row tb__row_head">
                                         <div class="tb__cell">#</div>
-                                        <div class="tb__cell">code</div>
-                                        <div class="tb__cell">name</div>
-                                        <div class="tb__cell">description</div>
+                                        <div class="tb__cell">title</div>
+                                        <div class="tb__cell">no of questions</div>
                                         <div class="tb__cell">creation date</div>
                                         <div class="tb__cell">actions</div>
                                     </div>
                                     <div class="tb__row">
                                         <div class="tb__cell"><a class="primary">1</a></div>
-                                        <div class="tb__cell">#jbs999</div>
                                         <div class="tb__cell">david Agbabiaka</div>
-                                        <div class="tb__cell tb__description">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                        <div class="tb__cell">
+                                            <p>3</p>
                                         </div>
                                         <div class="tb__cell">January 7th 2018, 3:34:02 am</div>
                                         <div class="tb__cell tb__btns">
