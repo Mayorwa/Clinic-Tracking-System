@@ -32,18 +32,68 @@ class question {
     public function fetchAll(){
         $this->database->query('SELECT * FROM questionnaires');
         $results = $this->database->fetchAll();
-
+        $questionnaires = [];
         foreach ($results as $result){
             $this->database->query('SELECT * FROM questions WHERE questionnaireId = :id');
             $this->database->bind(':id', $result['id']);
             $question_result = $this->database->fetchAll();
-            array_push($result, [
-                'questions' => $question_result
-            ]);
-            dd($result);
+            $result['questions'] = $question_result;
+            array_push($questionnaires, $result);
         }
 
-        dd($results[0]['questions']);
-        return $results;
+        return $questionnaires;
+    }
+
+    public function delete($id){
+        $this->database->query("DELETE FROM questionnaires WHERE id = :id");
+
+        $this->database->bind(':id', $id);
+
+        if($this->database->execute()){
+            $this->database->query("DELETE FROM questions WHERE questionnaireId = :id");
+            $this->database->bind(':id', $id);
+            if($this->database->execute()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function fetchOne($id){
+        $this->database->query("SELECT * FROM questionnaires WHERE id = :id");
+
+        $this->database->bind(':id', $id);
+
+        $result = $this->database->fetch();
+
+        $this->database->query('SELECT * FROM questions WHERE questionnaireId = :id');
+        $this->database->bind(':id', $result['id']);
+        $question_result = $this->database->fetchAll();
+        $result['questions'] = $question_result;
+
+        return $result;
+    }
+
+    public function update($id, $data){
+        $this->database->query('UPDATE questionnaires SET title = :title WHERE id = :id');
+
+        $this->database->bind(':id', $id);
+        $this->database->bind(':title', $data['title']);
+
+        if($this->database->execute()) {
+            $this->database->query("DELETE FROM questions WHERE questionnaireId = :id");
+            $this->database->bind(':id', $id);
+            if ($this->database->execute()) {
+                for($i = 0; $i < count($data['questions']); $i++){
+                    $this->database->query('INSERT INTO questions (questionnaireId, content, type)VALUES (:questionnaireId, :content, :type)');
+                    $this->database->bind(':questionnaireId', $id);
+                    $this->database->bind(':content', $data['questions'][$i]);
+                    $this->database->bind(':type', $data['type'][$i]);
+                    $this->database->execute();
+                }
+                return true;
+            }
+        }
+        return false;
     }
 }

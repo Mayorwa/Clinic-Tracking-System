@@ -58,7 +58,7 @@ must_be_auth();
                                             <div class="card__inner">
                                                 <div class="card__img card__img-blue">
                                                     <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                        <use xlink:href="../assets/img/sprite.svg#icon-doctor"></use>
+                                                        <use xlink:href="../assets/img/sprite.svg#icon-nurse"></use>
                                                     </svg>
                                                 </div>
                                                 <div class="card__title h6">support staffs</div>
@@ -118,7 +118,7 @@ must_be_auth();
                                             <div class="card__inner">
                                                 <div class="card__img card__img-blue">
                                                     <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                        <use xlink:href="../assets/img/sprite.svg#icon-clipboard"></use>
+                                                        <use xlink:href="../assets/img/sprite.svg#icon-appointment"></use>
                                                     </svg>
                                                 </div>
                                                 <div class="card__title h6">appointments</div>
