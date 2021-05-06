@@ -41,15 +41,25 @@
                 </div>
                 <div class="sidebar__text">Analysis</div>
             </a>
-            <a href="/board/meetings" class="sidebar__item">
+
+            <?php if ($request_page == "support_staff.php"):?>
+                <a href="../board/support_staff.php" class="sidebar__item active">
+            <?php else: ?>
+                <a href="../board/support_staff.php" class="sidebar__item">
+            <?php endif; ?>
                 <div class="sidebar__icon">
                     <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <use xlink:href="../assets/img/sprite.svg#icon-nurse"></use>
+                        <use xlink:href="../assets/img/sprite.svg#icon-doctor"></use>
                     </svg>
                 </div>
                 <div class="sidebar__text">Support Staff</div>
             </a>
-            <a href="/board/meetings" class="sidebar__item">
+
+            <?php if ($request_page == "doctors.php"):?>
+                <a href="../board/doctors.php" class="sidebar__item active">
+            <?php else: ?>
+                <a href="../board/doctors.php" class="sidebar__item">
+            <?php endif; ?>
                 <div class="sidebar__icon">
                     <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <use xlink:href="../assets/img/sprite.svg#icon-doctor"></use>
@@ -57,6 +67,7 @@
                 </div>
                 <div class="sidebar__text">Doctors</div>
             </a>
+
             <a href="/board/meetings" class="sidebar__item">
                 <div class="sidebar__icon">
                     <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -65,10 +76,11 @@
                 </div>
                 <div class="sidebar__text">Patients</div>
             </a>
-            <?php if (strpos($request_page, "questionnaire") === 0):?>
-                <a href="../board/questionnaires.php" class="sidebar__item active">
+
+            <?php if ($request_page == "questionnaire.php"):?>
+                <a href="../board/questionnaire.php" class="sidebar__item active">
             <?php else: ?>
-                <a href="../board/questionnaires.php" class="sidebar__item">
+                <a href="../board/questionnaire.php" class="sidebar__item">
             <?php endif; ?>
                 <div class="sidebar__icon">
                     <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -84,7 +96,7 @@
             <?php endif; ?>
                 <div class="sidebar__icon">
                     <svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <use xlink:href="../assets/img/sprite.svg#icon-appointment"></use>
+                        <use xlink:href="../assets/img/sprite.svg#icon-clipboard"></use>
                     </svg>
                 </div>
                 <div class="sidebar__text">Appointments</div>
