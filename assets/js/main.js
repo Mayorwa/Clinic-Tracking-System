@@ -6,6 +6,9 @@ var toggle = document.querySelector('.sidebar__toggle'),
     close = document.querySelector('.sidebar__close'),
     sidebar__user = document.querySelector('.sidebar__user'),
     sidebar__detail = document.querySelector('.sidebar__details'),
+    deleteModal = document.querySelector('#deleteModal'),
+    close_deleteModal = document.querySelectorAll('#close_deleteModal'),
+    open_deleteModal = document.querySelector('#open_deleteModal'),
     createModal = document.querySelector('#createModal'),
     close_createModal = document.querySelectorAll('#close_createModal'),
     open_createModal = document.querySelector('#open_createModal');
@@ -48,12 +51,15 @@ close_createModal.forEach(item => {
     });
 });
 
-function open_deleteModal(id){
-    document.querySelector(id).classList.add('active');
-}
-function close_deleteModal(id){
-    document.querySelector(id).classList.remove('active');
-}
+open_deleteModal.addEventListener('click', function () {
+    deleteModal.classList.add('active');
+});
+
+close_deleteModal.forEach(item => {
+    item.addEventListener('click', function () {
+        deleteModal.classList.remove('active');
+    });
+});
 
 function add_input(){
     let no_of_inputs = parseInt(number_of_inputs.value)+1;
@@ -64,9 +70,6 @@ function add_input(){
     document.querySelector('#question_1').parentNode.appendChild(clone);
 
     number_of_inputs.value = no_of_inputs;
-
-    document.querySelector("#question_" + no_of_inputs+" input").value = "";
-    document.querySelector("#question_" + no_of_inputs+" select").selectedIndex  = 0;
 
 }
 function remove_input(){

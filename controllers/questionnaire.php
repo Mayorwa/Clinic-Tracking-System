@@ -43,59 +43,7 @@ class Questionnaire{
             return $results;
         }catch (PDOException $e){
             $_SESSION['errors'] = [["info" => "<b>Error Occurred:". $e->getMessage()."</b>", "type" => "danger"]];
-            return [];
-        }
-    }
-
-    public function delete_questionnaire($id){
-        try{
-            $result = $this->question->delete($id);
-            if ($result){
-                $_SESSION['errors'] = [["info" => "<b>Questionnaire deleted successfully</b>", "type" => "success"]];
-                return [];
-            }
-            else{
-                $_SESSION['errors'] = [["info" => "<b>An Error Occurred</b>", "type" => "danger"]];
-                return [];
-            }
-        }
-        catch(PDOException $e){
-            $_SESSION['errors'] = [["info" => "<b>Error Occurred:". $e->getMessage()."</b>", "type" => "danger"]];
-            return [];
-        }
-    }
-
-    public function get_one_questionnaire($id){
-        try{
-            $result = $this->question->fetchOne($id);
-            if ($result == null){
-                $_SESSION['errors'] = [["info" => "<b>An Error Occurred</b>", "type" => "danger"]];
-                return null;
-            }
-
-            return $result;
-        }
-        catch(PDOException $e){
-            $_SESSION['errors'] = [["info" => "<b>Error Occurred:". $e->getMessage()."</b>", "type" => "danger"]];
-            return null;
-        }
-    }
-
-    public function update_questionnaire($id, $data){
-        try{
-            $result = $this->question->update($id, $data);
-            if ($result){
-                $_SESSION['errors'] = [["info" => "<b>Questionnaire updated successfully</b>", "type" => "success"]];
-                return [];
-            }
-            else{
-                $_SESSION['errors'] = [["info" => "<b>An Error Occurred</b>", "type" => "danger"]];
-                return [];
-            }
-        }
-        catch(PDOException $e){
-            $_SESSION['errors'] = [["info" => "<b>Error Occurred:". $e->getMessage()."</b>", "type" => "danger"]];
-            return null;
+            return $_SESSION['errors'];
         }
     }
 }
